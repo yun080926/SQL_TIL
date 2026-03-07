@@ -154,7 +154,7 @@ ERD가 없다면 직접 DB를 탐색하면서 어떤 테이블이 있는지, 컬
 # 2️⃣ 학습 인증란
 
 <!-- 여기를 지우고 학습한 것을 인증해주세요.-->
-![SQL_week1](../assignment/images/SQL_week1(1).png)
+![SQL_week1](images/SQL_week1(1).png)
 
 <br>
 <br>
