@@ -620,12 +620,12 @@ WHERE CATEGORY = '인문'
 YEAR(PUBLISHED_DATE, 2021)처럼 인자를 2개 넣어서 발생한 오류이며,
 정답은 YEAR(PUBLISHED_DATE) = 2021로 써야 한다.
 수정코드:
-~~~sql
+```sql
 SELECT BOOK_ID, PUBLISHED_DATE
 FROM BOOK
 WHERE CATEGORY = '인문'
   AND YEAR(PUBLISHED_DATE) = 2021;
-~~~
+```
 ~~~
 
 
