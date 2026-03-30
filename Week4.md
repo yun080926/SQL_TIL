@@ -617,6 +617,8 @@ WHERE CATEGORY = '인문'
 
 
 ~~~
+오류 메시지 "Number of arguments does not match for function YEAR"는 
+YEAR 함수에 전달된 인자의 개수가 맞지 않다는 의미이다.
 YEAR(PUBLISHED_DATE, 2021)처럼 인자를 2개 넣어서 발생한 오류이며,
 정답은 YEAR(PUBLISHED_DATE) = 2021로 써야 한다.
 수정코드:
