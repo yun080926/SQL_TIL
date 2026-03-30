@@ -406,7 +406,7 @@ SPLIT(문자열, 나눌 기준 문자)
 SELECT
   SPLIT("가, 나, 다, 라", ", ") AS split_example
 ```
-👉 결과: ["가", "나", "다", "라"] (배열 형태)
+결과: ["가", "나", "다", "라"] (배열 형태)
 
 특정 구분자(쉼표, 공백 등)를 기준으로 나눔
 결과는 ARRAY(배열) 형태로 반환됨
@@ -417,7 +417,7 @@ REPLACE(문자열, 찾을 단어, 바꿀 단어)
 SELECT
   REPLACE("안녕하세요", "안녕", "실천") AS replace_example
 ```
-👉 결과: "실천하세요"
+결과: "실천하세요"
 
 특정 문자열을 다른 문자열로 치환할 때 사용
 
@@ -427,7 +427,7 @@ TRIM(문자열, 제거할 문자)
 SELECT
   TRIM("안녕하세요", "하세요") AS trim_example
 ```
-👉 결과: "안녕"
+결과: "안녕"
 
 문자열의 앞뒤에서 특정 문자를 제거할 때 사용
 공백 제거할 때도 많이 사용됨
@@ -438,7 +438,7 @@ UPPER(문자열)
 SELECT
   UPPER("ab") AS upper_example
 ```
-👉 결과: "AB"
+결과: "AB"
 
 영어 문자열을 모두 대문자로 변환
 
@@ -462,7 +462,117 @@ SELECT
 * 시간함수들의 종류와 시간의 차이를 추출하는 방법을 설명할 수 있다. 
 ~~~
 
-<!-- 새롭게 배운 내용을 자유롭게 정리해주세요.-->
+날짜/시간 데이터가 중요한 이유
+대부분의 서비스 데이터에는 시간 정보가 포함됨
+→ created_at, updated_at 같은 컬럼
+하지만 우리가 보는 시간 vs DB에 저장된 시간이 다를 수 있음
+
+1️⃣ 시간 데이터 타입 종류
+DATE
+```sql
+DATE
+```
+날짜만 저장 (시간 없음)
+예: 2023-12-31
+DATETIME
+DATETIME
+날짜 + 시간 포함
+타임존 정보 없음
+예: 2023-12-31 14:00:00
+
+단순 "시간 값"만 표현 (지역 개념 없음)
+
+TIME
+```sql
+TIME
+```
+날짜 없이 시간만 표현
+예: 23:59:59
+
+TIMESTAMP
+```sql
+TIMESTAMP
+```
+UTC 기준 시간
+타임존 개념 포함된 시간
+예: 2023-12-31 14:00:00 UTC
+
+실제 "절대 시간"을 의미 (전 세계 기준 동일)
+
+2️⃣ UTC와 타임존(Time Zone)
+UTC (Universal Time Coordinated)
+국제 표준 시간
+모든 시간 계산의 기준
+
+한국 시간 = UTC + 9시간
+
+타임존 개념
+지역별 시간 차이를 반영한 기준
+예:
+한국 → Asia/Seoul
+미국 → America/New_York
+
+핵심 차이
+구분	특징
+DATETIME	타임존 없음
+TIMESTAMP	UTC 기준 + 타임존 고려
+
+3️⃣ millisecond / microsecond
+millisecond (ms)
+1초 = 1,000ms
+더 정밀한 시간 표현
+
+예:
+
+눈 깜빡임 ≈ 100ms
+microsecond (μs)
+1초 = 1,000,000μs
+
+더 정밀한 시간 (로그, 트래킹 데이터)
+
+4️⃣ 시간 변환 (실무 핵심)
+millisecond → TIMESTAMP
+```sql
+SELECT
+  TIMESTAMP_MILLIS(1704176819711)
+```
+microsecond → TIMESTAMP
+```sql
+SELECT
+  TIMESTAMP_MICROS(1704176819711000)
+```
+TIMESTAMP → DATETIME
+```sql
+SELECT
+  DATETIME(TIMESTAMP_MICROS(1704176819711000))
+```
+타임존 적용 (한국 시간 변환)
+```sql
+SELECT
+  DATETIME(TIMESTAMP_MICROS(1704176819711000), 'Asia/Seoul')
+```
+UTC → 한국 시간으로 변환
+
+5️⃣ TIMESTAMP vs DATETIME 차이
+```sql
+SELECT
+  CURRENT_TIMESTAMP() AS timestamp_col,
+  DATETIME(CURRENT_TIMESTAMP(), 'Asia/Seoul') AS datetime_col
+```
+
+차이 정리
+구분	TIMESTAMP	DATETIME
+기준	UTC	로컬 시간
+타임존	있음	없음
+사용 목적	정확한 시간 기록	화면 표시용
+
+
+저장 → TIMESTAMP
+보여주기 → DATETIME
+6️⃣ 시간 데이터 변환 핵심
+실제 DB에는 TIMESTAMP로 저장되는 경우가 많음
+필요에 따라 변환해서 사용
+TIMESTAMP ⇄ DATETIME
 
 
 <br>
