@@ -377,7 +377,78 @@ SELECT SAFE_DIVIDE(x, y) FROM 테이블
 * 문자열 함수들의 종류를 이해하고 어떠한 상황에서 사용하는지 설명할 수 있다. 
 ~~~
 
-<!-- 새롭게 배운 내용을 자유롭게 정리해주세요.-->
+문자열(String)이란?
+"안녕하세요", "카일스쿨"처럼 문자로 이루어진 데이터
+SQL에서 매우 자주 사용되는 데이터 타입 중 하나
+
+문자열로 할 수 있는 대표 연산
+연산	설명	함수
+문자열 붙이기	문자열을 이어 붙임	CONCAT
+문자열 나누기	특정 기준으로 분리	SPLIT
+특정 단어 변경	문자열 일부 치환	REPLACE
+문자열 자르기	특정 문자 제거	TRIM
+대문자 변환	영어 대문자로 변경	UPPER
+
+1️⃣ CONCAT — 문자열 붙이기
+-- 문법
+CONCAT(문자열1, 문자열2, ...)
+SELECT
+  CONCAT("안녕", "하세요") AS concat_example
+
+👉 결과: "안녕하세요"
+
+여러 문자열을 하나로 합칠 때 사용
+컬럼끼리 붙일 때도 활용 가능
+
+2️⃣ SPLIT — 문자열 나누기
+-- 문법
+SPLIT(문자열, 나눌 기준 문자)
+SELECT
+  SPLIT("가, 나, 다, 라", ", ") AS split_example
+
+👉 결과: ["가", "나", "다", "라"] (배열 형태)
+
+특정 구분자(쉼표, 공백 등)를 기준으로 나눔
+결과는 ARRAY(배열) 형태로 반환됨
+
+3️⃣ REPLACE — 특정 단어 변경
+-- 문법
+REPLACE(문자열, 찾을 단어, 바꿀 단어)
+SELECT
+  REPLACE("안녕하세요", "안녕", "실천") AS replace_example
+
+👉 결과: "실천하세요"
+
+특정 문자열을 다른 문자열로 치환할 때 사용
+
+4️⃣ TRIM — 문자열 자르기
+-- 문법
+TRIM(문자열, 제거할 문자)
+SELECT
+  TRIM("안녕하세요", "하세요") AS trim_example
+
+👉 결과: "안녕"
+
+문자열의 앞뒤에서 특정 문자를 제거할 때 사용
+공백 제거할 때도 많이 사용됨
+
+5️⃣ UPPER — 대문자 변환
+-- 문법
+UPPER(문자열)
+SELECT
+  UPPER("ab") AS upper_example
+
+👉 결과: "AB"
+
+영어 문자열을 모두 대문자로 변환
+
+문자열 함수 예시 한 번에 보기
+SELECT
+  CONCAT("안녕", "하세요") AS concat_example,
+  SPLIT("가, 나, 다, 라", ", ") AS split_example,
+  REPLACE("안녕하세요", "안녕", "실천") AS replace_example,
+  TRIM("안녕하세요", "하세요") AS trim_example,
+  UPPER("ab") AS upper_example
 
 
 
