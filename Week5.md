@@ -69,7 +69,7 @@ SELECT
   CURRENT_DATETIME("Asia/Seoul") AS current_datetime_asia;
 ```
 
-> ⚠️ 타임존을 지정하지 않으면 UTC 기준 → 한국 시간(KST)과 9시간 차이 발생
+> 주의!! 타임존을 지정하지 않으면 UTC 기준 → 한국 시간(KST)과 9시간 차이 발생
 
 ---
 
