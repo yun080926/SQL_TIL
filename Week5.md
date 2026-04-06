@@ -100,7 +100,7 @@ EXTRACT(DAYOFWEEK FROM datetime_col)
 -- 월~금 필터: WHERE EXTRACT(DAYOFWEEK FROM ...) BETWEEN 2 AND 6
 ```
 
-> 💡 EXTRACT vs DATETIME_TRUNC 언제 쓸까?
+> EXTRACT vs DATETIME_TRUNC 언제 쓸까
 > - 숫자로 뽑아서 집계/필터링 → EXTRACT
 > - 시간을 잘라서 그대로 DATETIME 유지 → DATETIME_TRUNC
 
@@ -121,7 +121,7 @@ DATETIME_TRUNC(..., YEAR)  → 2024-01-01T00:00:00
 DATETIME_TRUNC(..., HOUR)  → 2024-03-02T14:00:00
 ```
 
-> 💡 자주 쓰는 상황: 1시간 단위 수요 집계, 일/월별 집계 시 GROUP BY 기준으로 활용
+> 자주 쓰는 상황: 1시간 단위 수요 집계, 일/월별 집계 시 GROUP BY 기준으로 활용
 
 ---
 
@@ -158,7 +158,7 @@ FORMAT_DATETIME("%c", DATETIME "2024-01-11 12:35:35")
 | %H | 24시간 기준 시 |
 | %A | 요일 전체 이름 (Monday 등) |
 
-> 📌 포맷 문자는 외울 필요 없음 — 공식 문서 보고 필요할 때 찾아 쓰기
+> 포맷 문자는 외울 필요 없음 — 공식 문서 보고 필요할 때 찾아 쓰기
 
 ---
 
@@ -227,7 +227,7 @@ FROM basic.pokemon
 GROUP BY new_type1
 ```
 
-**⚠️ CASE WHEN 순서 주의**
+**CASE WHEN 순서 주의**
 
 조건1, 조건2에 둘 다 해당하면 **앞선 조건이 우선** 적용됨.
 ```sql
@@ -246,7 +246,7 @@ CASE
 END AS attack_level
 ```
 
-> 💡 문자열 함수(특정 단어 추출)와 함께 쓸 때 순서 이슈가 자주 발생하므로 주의
+> 문자열 함수(특정 단어 추출)와 함께 쓸 때 순서 이슈가 자주 발생하므로 주의
 
 ---
 
@@ -437,7 +437,7 @@ FROM pokemon;
 
 ---
 
-### 📌 핵심 정리
+### 핵심 정리
 
 | 구분 | 사용 상황 | 문법 |
 |---|---|---|
