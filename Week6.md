@@ -418,10 +418,21 @@ https://school.programmers.co.kr/learn/courses/30/lessons/131533
 > 상품 별 오프라인 매출 구하기
 
 ```sql
--- 풀이를 여기에 작성해주세요
+SELECT
+  P.PRODUCT_CODE,
+  SUM(P.PRICE * O.SALES_AMOUNT) AS SALES
+FROM PRODUCT AS P
+INNER JOIN OFFLINE_SALE AS O
+ON P.PRODUCT_ID = O.PRODUCT_ID
+GROUP BY
+  P.PRODUCT_CODE
+ORDER BY
+  SALES DESC,
+  P.PRODUCT_CODE ASC
 ```
 
-<!-- 정답 인증샷을 여기에 첨부해주세요 -->
+<img width="1385" height="786" alt="image" src="https://github.com/user-attachments/assets/4319ceab-76a3-4642-aedb-f77542a5de81" />
+
 
 ---
 
@@ -430,10 +441,25 @@ https://school.programmers.co.kr/learn/courses/30/lessons/133027
 > 주문량이 많은 아이스크림들 조회하기
 
 ```sql
--- 풀이를 여기에 작성해주세요
+SELECT
+  F.FLAVOR
+FROM FIRST_HALF AS F
+INNER JOIN (
+  -- 7월 데이터를 맛 기준으로 먼저 합산 (중복 출하번호 처리)
+  SELECT
+    FLAVOR,
+    SUM(TOTAL_ORDER) AS TOTAL_ORDER
+  FROM JULY
+  GROUP BY FLAVOR
+) AS J
+ON F.FLAVOR = J.FLAVOR
+ORDER BY
+  (F.TOTAL_ORDER + J.TOTAL_ORDER) DESC
+LIMIT 3
 ```
 
-<!-- 정답 인증샷을 여기에 첨부해주세요 -->
+<img width="1440" height="777" alt="image" src="https://github.com/user-attachments/assets/25576f12-9209-44be-a6ef-112463164ade" />
+
 
 ---
 
